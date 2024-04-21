@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Terminal App</string>
+    <string name="title_activity_main">Terminal App</string>
+    <string name="title_activity_reader">Reader Activity</string>
+
+    <string name="waiting_for_scan">Waiting for NFC Tag</string>
+    <string name="scanned_data">Scanned Data: %1$s\nWaiting for another scan.</string>
+    <string name="title_activity_tag_info">TagInfoActivity</string>
 </resources>

@@ -1,4 +1,4 @@
-package ru.nosqd.rgit.terminalapp
+package ru.nosqd.rgit.terminalapp.ndef
 
 import android.content.Intent
 import android.nfc.NdefMessage
@@ -6,6 +6,8 @@ import android.nfc.NdefRecord
 import android.nfc.NfcAdapter
 import android.nfc.tech.Ndef
 import android.util.Log
+import ru.nosqd.rgit.terminalapp.R
+import java.nio.charset.StandardCharsets
 
 object NDefHelper {
     public fun getNdefMessagesFromIntent(intent: Intent): Array<NdefMessage?>? {
@@ -26,7 +28,7 @@ object NDefHelper {
                 msgs = arrayOf(msg)
             }
         } else {
-            Log.e(R.layout.activity_main.javaClass.simpleName, "Unknown intent.")
+            Log.e(R.layout.activity_reader.javaClass.simpleName, "Unknown intent.")
             return null
         }
         return msgs
@@ -39,9 +41,10 @@ object NDefHelper {
     }
 
     fun writeString(ndf: Ndef, data: String) {
-        val record = NdefRecord.createTextRecord("en", data)
+        val record = NdefRecord.createMime("rgit/rndpass", data.toByteArray(StandardCharsets.UTF_8))
         val newMsg = NdefMessage(record)
         ndf.writeNdefMessage(newMsg)
+
     }
 
 }
